@@ -6,6 +6,7 @@ Purpose     : Store of Jinja Templates for rendering
 """
 
 import os
+import inspect
 import jinja2
 
 class JinjaStore:
@@ -29,7 +30,8 @@ class JinjaStore:
 
     def __init__(self, userTemplatePath=''):
         """ JinjaStore initializor """
-        modulePath = os.path.dirname(os.path.realpath(__file__))
+        modulePath = \
+        os.path.dirname(os.path.realpath(inspect.getfile(self.__class__)))
         currentPath = os.getcwd()
         sysTemplatePath = modulePath + os.sep + 'templates'
         cwdTemplatePath = currentPath + os.sep + 'templates'
