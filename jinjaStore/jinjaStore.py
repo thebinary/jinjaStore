@@ -9,6 +9,9 @@ import os
 import inspect
 import jinja2
 
+class FileNotFound(Exception):
+    pass
+
 class JinjaStore:
     """
     JinjaStore for Templating
@@ -81,7 +84,7 @@ class JinjaStore:
             try:
                 result = self.__renderTemplate(templator, actualTemplateName, varsDict)
             except jinja2.exceptions.TemplateNotFound as je:
-                print "ERROR!! TemplateNotFound - {}".format(je)
+                raise FileNotFound(je)
         return result
 
 
